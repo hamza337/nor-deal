@@ -1,6 +1,13 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Homepage = () => {
+  const navigate = useNavigate();
+
+  const handleViewProduct = () => {
+    navigate('/product/blanket');
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* First Section - Hero Section with Sidebar */}
@@ -177,7 +184,7 @@ const Homepage = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -218,7 +225,7 @@ const Homepage = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -259,7 +266,7 @@ const Homepage = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -300,7 +307,7 @@ const Homepage = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -341,7 +348,7 @@ const Homepage = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -382,7 +389,7 @@ const Homepage = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -423,7 +430,7 @@ const Homepage = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -464,7 +471,7 @@ const Homepage = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -550,7 +557,7 @@ const Homepage = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -591,7 +598,7 @@ const Homepage = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -632,7 +639,7 @@ const Homepage = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -673,7 +680,7 @@ const Homepage = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -714,7 +721,7 @@ const Homepage = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -755,7 +762,7 @@ const Homepage = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -796,7 +803,7 @@ const Homepage = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -837,7 +844,7 @@ const Homepage = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -973,7 +980,7 @@ const Homepage = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -1014,7 +1021,7 @@ const Homepage = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -1055,7 +1062,7 @@ const Homepage = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -1096,7 +1103,7 @@ const Homepage = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -1137,7 +1144,7 @@ const Homepage = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -1178,7 +1185,7 @@ const Homepage = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -1219,7 +1226,7 @@ const Homepage = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -1260,7 +1267,7 @@ const Homepage = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -1395,7 +1402,7 @@ const Homepage = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -1436,7 +1443,7 @@ const Homepage = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -1477,7 +1484,7 @@ const Homepage = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -1518,7 +1525,7 @@ const Homepage = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -1559,7 +1566,7 @@ const Homepage = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -1600,7 +1607,7 @@ const Homepage = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -1641,7 +1648,7 @@ const Homepage = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -1682,7 +1689,7 @@ const Homepage = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -1702,35 +1709,28 @@ const Homepage = () => {
            </div>
 
            {/* Eighth Section - Skincare Banner */}
-           <div className="bg-white py-12 px-8">
+           <div className="bg-gray-50 py-8 px-8">
              <div className="max-w-7xl mx-auto">
-               <div className="relative rounded-2xl overflow-hidden bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 h-64">
-                 {/* Background overlay */}
-                 <div className="absolute inset-0 bg-black bg-opacity-40"></div>
-                 
-                 {/* Background image placeholder */}
-                 <div className="absolute inset-0 bg-gradient-to-r from-gray-700 via-gray-600 to-gray-500 opacity-60"></div>
-                 
-                 {/* Content */}
-                 <div className="relative z-10 h-full flex items-center justify-start px-12">
+               <div className="relative rounded-2xl overflow-hidden h-64">
+                 {/* Background Image */}
+                 <img 
+                   src="/banner8.jpg" 
+                   alt="Bedding Collection" 
+                   className="absolute inset-0 w-full h-full object-cover"
+                 />
+                 {/* Dark Overlay */}
+                 <div className="absolute inset-0 bg-opacity-40" style={{backdropFilter: 'brightness(0.5)'}}></div>
+                 {/* Text Content */}
+                 <div className="relative z-10 flex items-center h-full p-8">
                    <div className="text-left">
-                     <h2 className="text-4xl md:text-5xl font-bold text-white mb-2">
-                       FLAT 27% OFF
-                     </h2>
-                     <h3 className="text-2xl md:text-3xl font-bold text-orange-500 mb-4">
-                       ON SKINCARE PRODUCTS
-                     </h3>
-                     <div className="flex items-baseline gap-2">
-                       <span className="text-white text-lg font-medium">STARTING FROM</span>
-                       <span className="text-orange-500 text-3xl font-bold">100 Kr</span>
+                     <h2 className="text-4xl font-bold text-white mb-2">FLAT 27% OFF</h2>
+                     <h3 className="text-2xl font-bold text-orange-500 mb-4">ON ENTIRE BEDDINGS</h3>
+                     <div className="text-white">
+                       <span className="text-lg">STARTING FROM</span>
+                       <div className="text-3xl font-bold text-orange-500">100 Kr</div>
                      </div>
                    </div>
                  </div>
-                 
-                 {/* Decorative elements */}
-                 <div className="absolute top-4 right-4 w-16 h-16 bg-orange-500 bg-opacity-20 rounded-full"></div>
-                 <div className="absolute bottom-6 right-12 w-12 h-12 bg-white bg-opacity-10 rounded-full"></div>
-                 <div className="absolute top-1/2 right-8 w-8 h-8 bg-orange-400 bg-opacity-30 rounded-full"></div>
                </div>
              </div>
            </div>

@@ -65,20 +65,20 @@ const ProductDetail = () => {
         {/* Product Images */}
         <div className="space-y-4">
           {/* Main Image */}
-          <div className="bg-pink-100 rounded-lg p-8 relative">
+          <div className="relative">
             <img 
               src={product.images[currentImageIndex]} 
               alt={product.title}
               className="w-full h-96 object-cover rounded-lg"
             />
-            {/* Image Dots */}
-            <div className="flex justify-center space-x-2 mt-4">
+            {/* Image Dots - Overlaid on image */}
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
               {product.images.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentImageIndex(index)}
-                  className={`w-3 h-3 rounded-full ${
-                    index === currentImageIndex ? 'bg-orange-500' : 'bg-gray-300'
+                  className={`w-3 h-3 rounded-full shadow-lg ${
+                    index === currentImageIndex ? 'bg-orange-500' : 'bg-white bg-opacity-70'
                   }`}
                 />
               ))}

@@ -34,7 +34,7 @@ const Footer = () => {
   return (
     <footer className="text-white">
       {/* FAQ Section */}
-      <div className="bg-gray-50 pt-16 pb-42">
+      <div className="bg-gray-50 pt-16 pb-48">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
@@ -74,7 +74,7 @@ const Footer = () => {
       </div>
 
       {/* Email Subscription Section - Overlapping Design */}
-      <div className="relative -mt-16 mb-16">
+      <div className="relative -mt-32 -mb-32">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-black text-white rounded-2xl p-8 shadow-2xl">
             <div className="flex flex-col md:flex-row items-center justify-between">
@@ -104,15 +104,13 @@ const Footer = () => {
       </div>
 
       {/* Main Footer Content */}
-      <div className="bg-gray-800 py-12">
+      <div className="pt-38 pb-12" style={{backgroundColor: '#2D2D2D'}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Company Info */}
             <div className="lg:col-span-1">
               <div className="flex items-center space-x-2 mb-4">
-                <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center">
-                  <span className="text-white font-bold text-sm">N</span>
-                </div>
+                <img src="/logo.png" alt="NorDeal Logo" className="w-8 h-8" />
                 <span className="text-xl font-bold">
                   <span className="text-white">NOR</span>
                   <span className="text-blue-500">DEAL</span>
@@ -194,29 +192,11 @@ const Footer = () => {
               
               <div className="mt-6">
                 <h4 className="font-semibold mb-3">Payment Method</h4>
-                <div className="grid grid-cols-4 gap-2">
-                  {/* Payment Icons */}
-                  <div className="bg-white rounded p-1 flex items-center justify-center">
-                    <span className="text-red-500 font-bold text-xs">MC</span>
-                  </div>
-                  <div className="bg-white rounded p-1 flex items-center justify-center">
-                    <span className="text-blue-600 font-bold text-xs">VISA</span>
-                  </div>
-                  <div className="bg-white rounded p-1 flex items-center justify-center">
-                    <span className="text-blue-800 font-bold text-xs">PP</span>
-                  </div>
-                  <div className="bg-white rounded p-1 flex items-center justify-center">
-                    <span className="text-gray-600 font-bold text-xs">GP</span>
-                  </div>
-                  <div className="bg-white rounded p-1 flex items-center justify-center">
-                    <span className="text-blue-600 font-bold text-xs">SP</span>
-                  </div>
-                  <div className="bg-white rounded p-1 flex items-center justify-center">
-                    <span className="text-black font-bold text-xs">AP</span>
-                  </div>
-                  <div className="bg-white rounded p-1 flex items-center justify-center">
-                    <span className="text-pink-500 font-bold text-xs">KL</span>
-                  </div>
+                <div className="flex flex-wrap gap-2">
+                  <img src="/shopping.png" alt="Mastercard" className="h-8" />
+                  <img src="/visa.png" alt="Visa" className="h-8" />
+                  <img src="/paypal.png" alt="PayPal" className="h-8" />
+                  <img src="/apple-pay.png" alt="Apple Pay" className="h-8" />
                 </div>
               </div>
             </div>
@@ -225,13 +205,13 @@ const Footer = () => {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-gray-700 py-4">
+      <div className="border-t border-gray-700 py-4" style={{backgroundColor: '#2D2D2D'}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center justify-between">
-            <p className="text-gray-400 text-sm">
+            <p className="text-gray-400 text-sm text-center md:text-left flex-1 md:text-center">
               Copyright © 2025 nordeal.no | All Rights Reserved
             </p>
-            <button className="mt-4 md:mt-0 bg-orange-500 hover:bg-orange-600 p-2 rounded-full transition-colors">
+            <button className="mt-4 md:mt-0 bg-orange-500 hover:bg-orange-600 transition-colors" style={{padding: '8px 15px', borderRadius: '20px'}}>
               <span className="text-white">↑</span>
             </button>
           </div>

@@ -1,6 +1,13 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const NewDeals = () => {
+  const navigate = useNavigate();
+
+  const handleViewProduct = () => {
+    navigate('/product/blanket');
+  };
+
   return (
     <div className="min-h-screen bg-white">
       {/* First Section - Hero Section with Sidebar */}
@@ -284,7 +291,7 @@ const NewDeals = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -325,7 +332,7 @@ const NewDeals = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -366,7 +373,7 @@ const NewDeals = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -407,7 +414,7 @@ const NewDeals = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -448,7 +455,7 @@ const NewDeals = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -489,7 +496,7 @@ const NewDeals = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -530,7 +537,7 @@ const NewDeals = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -571,7 +578,7 @@ const NewDeals = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -707,7 +714,7 @@ const NewDeals = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -748,7 +755,7 @@ const NewDeals = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -789,7 +796,7 @@ const NewDeals = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -830,7 +837,7 @@ const NewDeals = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -871,7 +878,7 @@ const NewDeals = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -912,7 +919,7 @@ const NewDeals = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -953,7 +960,7 @@ const NewDeals = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -994,7 +1001,7 @@ const NewDeals = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -1076,7 +1083,7 @@ const NewDeals = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -1117,7 +1124,7 @@ const NewDeals = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -1158,7 +1165,7 @@ const NewDeals = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -1199,7 +1206,7 @@ const NewDeals = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -1333,7 +1340,7 @@ const NewDeals = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -1374,7 +1381,7 @@ const NewDeals = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -1415,7 +1422,7 @@ const NewDeals = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -1456,7 +1463,7 @@ const NewDeals = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -1591,7 +1598,7 @@ const NewDeals = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -1632,7 +1639,7 @@ const NewDeals = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -1673,7 +1680,7 @@ const NewDeals = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -1714,7 +1721,7 @@ const NewDeals = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -1848,7 +1855,7 @@ const NewDeals = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -1889,7 +1896,7 @@ const NewDeals = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -1930,7 +1937,7 @@ const NewDeals = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
@@ -1971,7 +1978,7 @@ const NewDeals = () => {
                         <span className="text-sm text-gray-500 line-through ml-2">2899 Kr</span>
                       </div>
                       <button 
-                        
+                        onClick={handleViewProduct}
                         className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors"
                       >
                         View
