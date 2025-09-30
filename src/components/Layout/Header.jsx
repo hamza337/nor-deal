@@ -1,10 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeModal, setActiveModal] = useState(null);
+  const [favoritesCount, setFavoritesCount] = useState(0);
   const location = useLocation();
+
+  // Listen for favorites updates
+  useEffect(() => {
+    const handleFavoritesUpdate = (event) => {
+      setFavoritesCount(event.detail);
+    };
+
+    // Load initial favorites count from localStorage
+    const savedFavorites = localStorage.getItem('favorites');
+    if (savedFavorites) {
+      setFavoritesCount(JSON.parse(savedFavorites).length);
+    }
+
+    window.addEventListener('favoritesUpdated', handleFavoritesUpdate);
+    return () => {
+      window.removeEventListener('favoritesUpdated', handleFavoritesUpdate);
+    };
+  }, []);
 
   const openModal = (modalType) => {
     setActiveModal(modalType);
@@ -82,13 +101,13 @@ const Header = () => {
 
             {/* Right Side Icons */}
             <div className="flex items-center space-x-6">
-              {/* Favorites */}
-              <Link to="/favorites" className="relative flex flex-col items-center hover:bg-gray-50 rounded-lg">
+              {/* Favourites */}
+              <Link to="/favourites" className="relative flex flex-col items-center hover:bg-gray-50 rounded-lg">
                 <svg className="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                 </svg>
-                <span className="absolute -top-1 -right-0 bg-black text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-medium">0</span>
-                <span className="text-xs text-gray-600 mt-1">Favorites</span>
+                <span className="absolute -top-1 -right-0 bg-black text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-medium">{favoritesCount}</span>
+                <span className="text-xs text-gray-600 mt-1">Favourites</span>
               </Link>
 
               {/* Cart */}

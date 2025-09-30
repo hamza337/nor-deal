@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 const ProductDetail = () => {
   const { productId } = useParams();
+  const navigate = useNavigate();
   const [selectedColor, setSelectedColor] = useState('blue');
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState('description');
@@ -155,24 +156,29 @@ const ProductDetail = () => {
             <div className="flex items-center space-x-4">
               <button
                 onClick={() => handleQuantityChange('decrease')}
-                className="w-10 h-10 border border-gray-300 rounded-lg flex items-center justify-center hover:bg-gray-50"
+                className="w-10 text-black h-10 border border-gray-300 rounded-lg flex items-center justify-center hover:bg-gray-50"
               >
                 −
               </button>
-              <span className="text-xl font-semibold w-8 text-center">{quantity}</span>
+              <span className="text-xl text-black font-semibold w-8 text-center">{quantity}</span>
               <button
                 onClick={() => handleQuantityChange('increase')}
                 className="w-10 h-10 bg-orange-500 text-white rounded-lg flex items-center justify-center hover:bg-orange-600"
               >
                 +
               </button>
-              <button className="ml-4 px-6 py-3 bg-teal-600 text-white rounded-lg font-medium hover:bg-teal-700 transition-colors">
+              <button 
+                onClick={() => navigate('/cart')} 
+                className="ml-4 px-6 py-3 bg-teal-600 text-white rounded-lg font-medium hover:bg-teal-700 transition-colors"
+              >
                 Add to Cart
               </button>
-              <button className="px-6 py-3 bg-orange-500 text-white rounded-lg font-medium hover:bg-orange-600 transition-colors">
+              <button 
+              onClick={() => navigate('/checkout')} 
+              className="px-6 py-3 bg-orange-500 text-white rounded-lg font-medium hover:bg-orange-600 transition-colors">
                 Buy Now
               </button>
-              <button className="p-3 border border-gray-300 rounded-lg hover:bg-gray-50">
+              <button className="p-3 text-red-500 border border-gray-300 rounded-lg hover:bg-gray-50">
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                 </svg>
