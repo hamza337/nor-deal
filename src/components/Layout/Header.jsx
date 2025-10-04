@@ -5,7 +5,59 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeModal, setActiveModal] = useState(null);
   const [favoritesCount, setFavoritesCount] = useState(0);
+  const [isHamburgerMenuOpen, setIsHamburgerMenuOpen] = useState(false);
+  const [openCategory, setOpenCategory] = useState(null);
+  const [openSubcategory, setOpenSubcategory] = useState(null);
   const location = useLocation();
+
+  // Category data for hamburger menu with 3-layer structure
+  const categories = [
+    { 
+      name: 'Home', 
+      subcategories: [
+        { name: 'Furniture', items: ['Sofas', 'Tables', 'Chairs', 'Storage'] },
+        { name: 'Decor', items: ['Wall Art', 'Lighting', 'Rugs', 'Plants'] },
+        { name: 'Bedding', items: ['Sheets', 'Pillows', 'Comforters', 'Blankets'] },
+        { name: 'Kitchen', items: ['Cookware', 'Appliances', 'Utensils', 'Storage'] }
+      ]
+    },
+    { 
+      name: 'SPA Days', 
+      subcategories: [
+        { name: 'Massage', items: ['Swedish', 'Deep Tissue', 'Hot Stone', 'Aromatherapy'] },
+        { name: 'Facial', items: ['Anti-Aging', 'Hydrating', 'Acne Treatment', 'Brightening'] },
+        { name: 'Body Treatments', items: ['Body Wraps', 'Scrubs', 'Detox', 'Moisturizing'] },
+        { name: 'Wellness Packages', items: ['Day Spa', 'Weekend Retreat', 'Couples Package', 'Luxury Experience'] }
+      ]
+    },
+    { 
+      name: 'Electronics', 
+      subcategories: [
+        { name: 'Smartphones', items: ['iPhone', 'Samsung', 'Google Pixel', 'OnePlus'] },
+        { name: 'Laptops', items: ['MacBook', 'Dell', 'HP', 'Lenovo'] },
+        { name: 'Audio', items: ['Headphones', 'Speakers', 'Earbuds', 'Sound Systems'] },
+        { name: 'Accessories', items: ['Cases', 'Chargers', 'Cables', 'Screen Protectors'] }
+      ]
+    },
+    { 
+      name: 'Beauty Products', 
+      subcategories: [
+        { name: 'Skincare', items: ['Cleansers', 'Moisturizers', 'Serums', 'Sunscreen'] },
+        { name: 'Makeup', items: ['Foundation', 'Lipstick', 'Eyeshadow', 'Mascara'] },
+        { name: 'Haircare', items: ['Shampoo', 'Conditioner', 'Styling', 'Treatments'] },
+        { name: 'Fragrances', items: ['Perfume', 'Cologne', 'Body Spray', 'Essential Oils'] }
+      ]
+    },
+    { 
+      name: 'Fitness & Outdoors', 
+      subcategories: [
+        { name: 'Exercise Equipment', items: ['Weights', 'Cardio', 'Yoga', 'Resistance'] },
+        { name: 'Sportswear', items: ['Athletic Wear', 'Shoes', 'Accessories', 'Team Gear'] },
+        { name: 'Outdoor Gear', items: ['Camping', 'Hiking', 'Water Sports', 'Winter Sports'] },
+        { name: 'Supplements', items: ['Protein', 'Vitamins', 'Pre-Workout', 'Recovery'] }
+      ]
+    }
+  ];
 
   // Listen for favorites updates
   useEffect(() => {
@@ -24,6 +76,20 @@ const Header = () => {
       window.removeEventListener('favoritesUpdated', handleFavoritesUpdate);
     };
   }, []);
+
+  // Close hamburger menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (isHamburgerMenuOpen && !event.target.closest('.hamburger-menu-container')) {
+        setIsHamburgerMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isHamburgerMenuOpen]);
 
   const openModal = (modalType) => {
     setActiveModal(modalType);
@@ -120,13 +186,6 @@ const Header = () => {
               </Link>
 
               {/* Admin */}
-              <Link to="/admin" className="relative flex flex-col items-center hover:bg-gray-50 rounded-lg">
-                <svg className="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-                <span className="text-xs text-gray-600 mt-1">Admin</span>
-              </Link>
             </div>
 
             {/* Mobile Menu Button */}
@@ -146,6 +205,123 @@ const Header = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-12">
               <div className="flex items-center space-x-8">
+                {/* Hamburger Menu */}
+                <div className="relative hamburger-menu-container">
+                  <button 
+                    onClick={() => {
+                      setIsHamburgerMenuOpen(!isHamburgerMenuOpen);
+                      if (!isHamburgerMenuOpen) {
+                        setOpenCategory(null);
+                        setOpenSubcategory(null);
+                      }
+                    }}
+                    className={`h-12 flex items-center px-3 text-sm font-medium transition-all duration-200 ${
+                      isHamburgerMenuOpen 
+                        ? 'text-orange-500' 
+                        : 'text-gray-700 hover:text-orange-500'
+                    }`}
+                  >
+                    <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                    {/* <span>Categories</span> */}
+                  </button>
+                  
+                  {/* Mega Menu Dropdown */}
+                  {isHamburgerMenuOpen && (
+                    <div className="absolute top-full left-0 bg-white border border-gray-200 shadow-xl z-50 mt-2">
+                      <div className="flex">
+                        {/* First Layer - Categories */}
+                        <div className="w-60 border-r border-gray-200">
+                          <div className="py-2">
+                            {categories.map((category, index) => (
+                              <div 
+                                key={index}
+                                className={`flex items-center justify-between px-4 py-3 cursor-pointer transition-colors ${
+                                  openCategory === index ? 'bg-orange-50 text-orange-500' : 'text-gray-700 hover:bg-orange-50 hover:text-orange-500'
+                                }`}
+                                onClick={() => {
+                                  setOpenCategory(openCategory === index ? null : index);
+                                  setOpenSubcategory(null);
+                                }}
+                              >
+                                <div className="flex items-center">
+                                  {/* <span className={`w-2 h-2 rounded-full mr-3 transition-colors ${
+                                    openCategory === index ? 'bg-orange-500' : 'bg-gray-300'
+                                  }`}></span> */}
+                                  <span className="font-medium">{category.name}</span>
+                                </div>
+                                {category.subcategories.length > 0 && (
+                                  <svg className={`w-4 h-4 transition-colors ${
+                                    openCategory === index ? 'text-orange-500' : 'text-gray-400'
+                                  }`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                  </svg>
+                                )}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Second Layer - Subcategories */}
+                        {openCategory !== null && (
+                          <div className="w-64 border-r border-gray-200">
+                            <div className="py-2">
+                              {categories[openCategory].subcategories.map((subcategory, subIndex) => (
+                                <div 
+                                  key={subIndex}
+                                  className={`flex items-center justify-between px-4 py-3 cursor-pointer transition-colors ${
+                                    openSubcategory === `${openCategory}-${subIndex}` ? 'bg-orange-50 text-orange-500' : 'text-gray-700 hover:bg-orange-50 hover:text-orange-500'
+                                  }`}
+                                  onClick={() => {
+                                    const subKey = `${openCategory}-${subIndex}`;
+                                    setOpenSubcategory(openSubcategory === subKey ? null : subKey);
+                                  }}
+                                >
+                                  <span className="font-medium">{subcategory.name}</span>
+                                  {subcategory.items && subcategory.items.length > 0 && (
+                                    <svg className={`w-4 h-4 transition-colors ${
+                                      openSubcategory === `${openCategory}-${subIndex}` ? 'text-orange-500' : 'text-gray-400'
+                                    }`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                    </svg>
+                                  )}
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Third Layer - Items */}
+                        {openSubcategory !== null && (
+                          <div className="w-48">
+                            <div className="py-2">
+                              {(() => {
+                                const [catIndex, subIndex] = openSubcategory.split('-').map(Number);
+                                const subcategory = categories[catIndex].subcategories[subIndex];
+                                return subcategory.items.map((item, itemIndex) => (
+                                  <Link 
+                                    key={itemIndex}
+                                    to="/deals" 
+                                    className="block px-4 py-3 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-500 transition-colors"
+                                    onClick={() => {
+                                      setIsHamburgerMenuOpen(false);
+                                      setOpenCategory(null);
+                                      setOpenSubcategory(null);
+                                    }}
+                                  >
+                                    {item}
+                                  </Link>
+                                ));
+                              })()}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </div>
+                
                 <Link to="/" className={`h-12 flex items-center text-sm font-medium transition-colors ${
                   location.pathname === '/' 
                     ? 'text-orange-500 border-b-2 border-orange-500 hover:text-orange-600' 

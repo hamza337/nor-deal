@@ -137,8 +137,11 @@ const Footer = () => {
                 <Link to="/about" className="text-gray-300 hover:text-white text-sm block mb-2">
                   About Us
                 </Link>
-                <Link to="/faqs" className="text-gray-300 hover:text-white text-sm block">
+                <Link to="/faqs" className="text-gray-300 hover:text-white text-sm block mb-2">
                   FAQs
+                </Link>
+                <Link to="/faqs" className="text-gray-300 hover:text-white text-sm block">
+                  Admin
                 </Link>
               </div>
             </div>
@@ -211,9 +214,18 @@ const Footer = () => {
             <p className="text-gray-400 text-sm text-center md:text-left flex-1 md:text-center">
               Copyright © 2025 nordeal.no | All Rights Reserved
             </p>
-            <button className="mt-4 md:mt-0 bg-orange-500 hover:bg-orange-600 transition-colors" style={{padding: '8px 15px', borderRadius: '20px'}}>
-              <span className="text-white">↑</span>
-            </button>
+            <div className='flex gap-10'>
+              <Link to="/admin" className="relative flex flex-col items-center rounded-lg">
+                <svg className="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <span className="text-xs text-white mt-1">Admin</span>
+              </Link>
+              <button className="mt-4 md:mt-0 bg-orange-500 hover:bg-orange-600 transition-colors" style={{padding: '8px 17px', borderRadius: '25px'}}>
+                <span className="text-white">↑</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
