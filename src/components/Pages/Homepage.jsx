@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
+// Generic Components
+import SpinWheel from '../GenericComponents/SpinWheel';
+
 const Homepage = () => {
   const navigate = useNavigate();
   const [favorites, setFavorites] = useState(new Set());
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [showSpinModal, setShowSpinModal] = useState(false);
   
   // Slider images
   const sliderImages = [
@@ -19,6 +23,10 @@ const Homepage = () => {
     if (savedFavorites) {
       setFavorites(new Set(JSON.parse(savedFavorites)));
     }
+
+    setTimeout(() => {
+      setShowSpinModal(true);
+    }, 2000);
   }, []);
 
   // Save favorites to localStorage whenever favorites change
@@ -198,7 +206,6 @@ const Homepage = () => {
           </div>
         </div>
       </div>
-
       {/* Remaining Sections - Full Width */}
       <div className="w-full">
         {/* Popular Home Deals Section */}
@@ -1848,9 +1855,39 @@ const Homepage = () => {
                </div>
              </div>
            </div>
-         </div>
-       </div>
-    //  </div>
+        </div>
+
+        {/* Floating Spin button */}
+        {/* <button
+          onClick={() => setShowSpinModal(true)}
+          className="fixed bottom-6 right-6 z-90 bg-teal-600 hover:bg-teal-700 text-white rounded-full px-5 py-3 shadow-lg"
+        >
+          Spin & Win
+        </button> */}
+
+        {/* Spin Wheel Modal */}
+        {showSpinModal && (
+          <div className="fixed inset-0 z-100 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
+            <div className="relative w-full max-w-lg rounded-2xl">
+              <button
+                onClick={() => {
+                  setShowSpinModal(false);
+                }}
+                className="absolute top-3 right-3 rounded-full text-white flex items-center justify-center"
+                aria-label="Close"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              </button>
+              <div className="p-4 sm:p-6">
+                <SpinWheel />
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+   //  </div>
    );
  };
 
