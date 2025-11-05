@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import toast from 'react-hot-toast'
 
 // Constants
 import { DEFAULT_SEGMENTS, COLORS } from '../../../utils/constants'
@@ -18,6 +19,7 @@ const SpinWheel = ({
   segments = DEFAULT_SEGMENTS,
   durationMs = 4500,
   onFinish,
+  setShowSpinModal,
 }) => {
   const [rotationDeg, setRotationDeg] = useState(0)
   const [isSpinning, setIsSpinning] = useState(false)
@@ -25,6 +27,14 @@ const SpinWheel = ({
   const wheelRef = useRef(null)
   const targetIndexRef = useRef(null)
   const [wheelSize, setWheelSize] = useState(0)
+  const [showModal, setShowModal] = useState(false)
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+
+  const handleCloseModal = useCallback(() => {
+    setShowModal(false)
+    setIsSpinning(false)
+  }, [])
 
   const anglePer = useMemo(() => 360 / Math.max(1, segments.length), [segments.length])
 
@@ -81,6 +91,7 @@ const SpinWheel = ({
     if (typeof onFinish === 'function') {
       onFinish(segments[finalIndex], finalIndex)
     }
+    setShowModal(true)
   }, [isSpinning, rotationDeg, segments, onFinish])
 
   const labelDistancePx = Math.max(24, Math.round(wheelSize * 0.36))
@@ -158,6 +169,68 @@ const SpinWheel = ({
           </div>
         )}
       </div>
+
+      {showModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center">
+          <button
+            type="button"
+            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+            onClick={handleCloseModal}
+            aria-label="Close modal overlay"
+          />
+          <div className="relative z-10 w-11/12 max-w-md rounded-lg bg-white p-5 shadow-xl">
+            <button
+              type="button"
+              className="absolute right-3 top-3 rounded-md p-1 text-gray-500 hover:bg-gray-100"
+              onClick={handleCloseModal}
+              aria-label="Close"
+            >
+              ×
+            </button>
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">Get your coupon</h3>
+
+            <div className="space-y-3">
+              <div>
+                <label htmlFor="coupon-name" className="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                <input
+                  id="coupon-name"
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="w-full text-black pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 px-3"
+                  placeholder="Name"
+                />
+              </div>
+              <div>
+                <label htmlFor="coupon-email" className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                <input
+                  id="coupon-email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full text-black pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 px-3"
+                  placeholder="Email Address"
+                />
+              </div>
+            </div>
+
+            <button
+              onClick={() => {
+                toast.success('The code has been sent to your email')
+                handleCloseModal()
+                setName('')
+                setEmail('')
+                setTimeout(() => {
+                  setShowSpinModal(false)
+                }, 2000)
+              }}
+              className="mt-4 w-full rounded-md bg-orange-500 px-4 py-2 text-white font-semibold hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-400"
+            >
+              Get a coupon code
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

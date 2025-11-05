@@ -1,4 +1,5 @@
 import React from 'react';
+import { Toaster } from 'react-hot-toast';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout/Layout';
 import Homepage from './components/Pages/Homepage';
@@ -25,6 +26,7 @@ function App() {
           {/* Add more routes here as needed */}
         </Routes>
       </Layout>
+      <Toaster position="top-center" />
     </Router>
   );
 }
