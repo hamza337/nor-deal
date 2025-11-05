@@ -8,6 +8,28 @@ const Header = () => {
   const [isHamburgerMenuOpen, setIsHamburgerMenuOpen] = useState(false);
   const [openCategory, setOpenCategory] = useState(null);
   const [openSubcategory, setOpenSubcategory] = useState(null);
+  const [isAccountEditing, setIsAccountEditing] = useState(false);
+  const [accountData, setAccountData] = useState({
+    name: 'John Doe',
+    email: 'john@example.com',
+    city: 'Oslo',
+    address: 'Storgata 1',
+    zip: '0001',
+    cardNumber: '**** **** **** 1234',
+    accountTitle: 'John Doe',
+    cvv: '***',
+  });
+  const [accountDraft, setAccountDraft] = useState(accountData);
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+
+  const handleAccountClose = () => {
+    setIsAccountEditing(false);
+    setAccountDraft(accountData);
+    setCurrentPassword('');
+    setNewPassword('');
+    closeModal();
+  };
   const location = useLocation();
 
   // Category data for hamburger menu with 3-layer structure
@@ -113,7 +135,7 @@ const Header = () => {
               <span>Select Location</span>
             </div>
             <div className="w-px h-4 bg-white opacity-50"></div>
-            <Link to="/account" className="hover:underline px-4">My Account</Link>
+            <button onClick={() => openModal('account')} className="hover:underline px-4">My Account</button>
             <div className="w-px h-4 bg-white opacity-50"></div>
             <button onClick={() => openModal('login')} className="hover:underline px-4">Register or Sign In</button>
             <div className="w-px h-4 bg-white opacity-50"></div>
@@ -346,9 +368,13 @@ const Header = () => {
                   {/* Local Dropdown Menu */}
                   <div className="absolute top-full left-0 mt-1 w-48 bg-white rounded-md shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                     <div className="py-2">
-                      <Link to="/blankets" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-500 transition-colors">
-                        Blankets
-                      </Link>
+                      <Link to="/deals" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-500 transition-colors">Oslo</Link>
+                      <Link to="/deals" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-500 transition-colors">Bergen</Link>
+                      <Link to="/deals" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-500 transition-colors">Trondheim</Link>
+                      <Link to="/deals" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-500 transition-colors">Stavanger</Link>
+                      <Link to="/deals" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-500 transition-colors">Kristiansand</Link>
+                      <Link to="/deals" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-500 transition-colors">Drammen</Link>
+                      <Link to="/deals" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-500 transition-colors">Tromsø</Link>
                     </div>
                   </div>
                 </div>
@@ -359,6 +385,14 @@ const Header = () => {
                       <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
                     </svg>
                   </button>
+                  {/* Products Dropdown Menu */}
+                  <div className="absolute top-full left-0 mt-1 w-48 bg-white rounded-md shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                    <div className="py-2">
+                      <Link to="/blankets" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-500 transition-colors">
+                        Blankets
+                      </Link>
+                    </div>
+                  </div>
                 </div>
                 <div className="relative group h-12 flex items-center">
                   <button className="text-gray-700 hover:text-orange-500 text-sm font-medium flex items-center space-x-1 transition-colors">
@@ -377,16 +411,8 @@ const Header = () => {
                   Advertise
                 </div>
                 {/* Norwegian Flag */}
-                <div className="w-8 h-6 relative overflow-hidden rounded-sm border border-gray-200">
-                  <div className="absolute inset-0 bg-red-600"></div>
-                  <div className="absolute top-0 left-0 w-full h-1 bg-white"></div>
-                  <div className="absolute top-2 left-0 w-full h-1 bg-white"></div>
-                  <div className="absolute top-0 left-0 w-1 h-full bg-white"></div>
-                  <div className="absolute top-0 left-2 w-1 h-full bg-white"></div>
-                  <div className="absolute top-0.5 left-0 w-full h-0.5 bg-blue-800"></div>
-                  <div className="absolute top-2.5 left-0 w-full h-0.5 bg-blue-800"></div>
-                  <div className="absolute top-0 left-0.5 w-0.5 h-full bg-blue-800"></div>
-                  <div className="absolute top-0 left-2.5 w-0.5 h-full bg-blue-800"></div>
+                <div className="w-8 h-6">
+                  <img src="/B-NF.png" alt="Norwegian Flag" className="w-full h-full object-cover" />
                 </div>
               </div>
             </div>
@@ -416,6 +442,7 @@ const Header = () => {
                 location.pathname === '/deals' ? 'text-orange-500 font-medium' : 'text-gray-700'
               }`}>New Deals</Link>
               <Link to="/products" className="block py-3 text-gray-700 border-b border-gray-100">Products</Link>
+              <Link to="/blankets" className="block py-3 pl-4 text-gray-700 border-b border-gray-100">Blankets</Link>
               <Link to="/local" className="block py-3 text-gray-700 border-b border-gray-100">Local</Link>
               <Link to="/travel" className="block py-3 text-gray-700 border-b border-gray-100">Travel & Hotels</Link>
               <Link to="/reviews" className="block py-3 text-gray-700">Reviews</Link>
@@ -427,25 +454,28 @@ const Header = () => {
       {/* Authentication Modals */}
       {activeModal && (
         <div className="fixed inset-0 flex items-center justify-center z-50 p-4" style={{backdropFilter: 'brightness(0.5)'}}>
-          <div className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden flex">
+          <div className={`bg-white rounded-2xl shadow-2xl ${activeModal === 'account' ? 'max-w-2xl' : 'max-w-4xl'} w-full max-h-[90vh] overflow-hidden flex ${activeModal === 'account' ? 'justify-center' : ''}`}>
             {/* Left Side - Image */}
-            <div className="hidden md:block md:w-1/2 relative">
+            {activeModal !== 'account' && 
+            (
+              <div className="hidden md:block md:w-1/2 relative">
               <img 
                 src={`/${activeModal === 'login' ? 'login.png' : 
-                       activeModal === 'signup' ? 'signup.png' : 
-                       activeModal === 'forgot' ? 'forget.png' : 
-                       activeModal === 'verify' ? 'verify.png' : 
-                       activeModal === 'reset' ? 'reset.png' : 'login.png'}`} 
+                  activeModal === 'signup' ? 'signup.png' : 
+                  activeModal === 'forgot' ? 'forget.png' : 
+                  activeModal === 'verify' ? 'verify.png' : 
+                  activeModal === 'reset' ? 'reset.png' : 'login.png'}`} 
                 alt="Authentication" 
                 className="w-full h-full object-cover"
               />
             </div>
+            )}
             
             {/* Right Side - Form */}
-            <div className="w-full md:w-1/2 p-8 relative" style={{display:'flex', flexDirection:'column', justifyContent:'center'}}>
+            <div className={`w-full md:w-[${activeModal === 'account' ? '50%' : '1/2'}] p-8 relative max-h-[90vh]s overflow-y-auto`} style={{display:'flex', flexDirection:'column'}}>
               {/* Close Button */}
               <button 
-                onClick={closeModal}
+                onClick={activeModal === 'account' ? handleAccountClose : closeModal}
                 className="absolute top-4 right-4 w-8 h-8 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center transition-colors"
               >
                 <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -467,7 +497,7 @@ const Header = () => {
                         <input 
                           type="email" 
                           placeholder="Email" 
-                          className="w-full pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent pl-10"
+                          className="w-full text-black pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent pl-10"
                         />
                         <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
                           <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
@@ -482,7 +512,7 @@ const Header = () => {
                         <input 
                           type="password" 
                           placeholder="Password" 
-                          className="w-full pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent pl-10"
+                          className="w-full text-black pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent pl-10"
                         />
                         <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
@@ -541,6 +571,307 @@ const Header = () => {
                 </div>
               )}
 
+              {/* Account Modal */}
+              {activeModal === 'account' && (
+                <div className="flex flex-col">
+                  <div className="flex items-center justify-between mb-4">
+                    <h2 className="text-2xl font-bold text-gray-900">My Account</h2>
+                  </div>
+
+                  <div className="overflow-y-auto max-h-[60vh] space-y-6 pr-2">
+                    {/* Personal Details */}
+                    <div className="space-y-3">
+                      <h3 className="text-lg font-semibold text-gray-900">Personal details</h3>
+                      {!isAccountEditing ? (
+                        <div className="space-y-3">
+                          <div className="pl-0.5">
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                            <div className="relative">
+                              <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+                              </svg>
+                              <div className="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-gray-900">{accountData.name}</div>
+                            </div>
+                          </div>
+                          <div className="pl-0.5">
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                            <div className="relative">
+                              <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                              </svg>
+                              <div className="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-gray-900">{accountData.email}</div>
+                            </div>
+                          </div>
+                          <div className="pl-0.5">
+                            <label className="block text-sm font-medium text-gray-700 mb-1">City</label>
+                            <div className="relative">
+                              <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10 2a6 6 0 00-6 6c0 4.418 6 10 6 10s6-5.582 6-10a6 6 0 00-6-6zm0 8a2 2 0 110-4 2 2 0 010 4z" />
+                              </svg>
+                              <div className="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-gray-900">{accountData.city}</div>
+                            </div>
+                          </div>
+                          <div className="pl-0.5">
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Address</label>
+                            <div className="relative">
+                              <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10.707 2.293a1 1 0 00-1.414 0L3 8.586V17a1 1 0 001 1h4a1 1 0 001-1v-3h2v3a1 1 0 001 1h4a1 1 0 001-1V8.586l-6.293-6.293z" />
+                              </svg>
+                              <div className="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-gray-900">{accountData.address}</div>
+                            </div>
+                          </div>
+                          <div className="pl-0.5">
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Zip code</label>
+                            <div className="relative">
+                              <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M7 4h10v2H7V4zm0 5h10v2H7V9zm0 5h10v2H7v-2zM3 4h2v2H3V4zm0 5h2v2H3V9zm0 5h2v2H3v-2z" />
+                              </svg>
+                              <div className="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-gray-900">{accountData.zip}</div>
+                            </div>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="space-y-3">
+                          <div className="pl-0.5">
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                            <div className="relative">
+                              <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+                              </svg>
+                              <input
+                                type="text"
+                                value={accountDraft.name}
+                                onChange={(e) => setAccountDraft({...accountDraft, name: e.target.value})}
+                                className="w-full text-black pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                                placeholder="Name"
+                              />
+                            </div>
+                          </div>
+                          <div className="pl-0.5">
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                            <div className="relative">
+                              <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                              </svg>
+                              <input
+                                type="email"
+                                value={accountDraft.email}
+                                onChange={(e) => setAccountDraft({...accountDraft, email: e.target.value})}
+                                className="w-full text-black pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                                placeholder="Email Address"
+                              />
+                            </div>
+                          </div>
+                          <div className="pl-0.5">
+                            <label className="block text-sm font-medium text-gray-700 mb-1">City</label>
+                            <div className="relative">
+                              <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10 2a6 6 0 00-6 6c0 4.418 6 10 6 10s6-5.582 6-10a6 6 0 00-6-6zm0 8a2 2 0 110-4 2 2 0 010 4z" />
+                              </svg>
+                              <input
+                                type="text"
+                                value={accountDraft.city}
+                                onChange={(e) => setAccountDraft({...accountDraft, city: e.target.value})}
+                                className="w-full text-black pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                                placeholder="City"
+                              />
+                            </div>
+                          </div>
+                          <div className="pl-0.5">
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Address</label>
+                            <div className="relative">
+                              <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10.707 2.293a1 1 0 00-1.414 0L3 8.586V17a1 1 0 001 1h4a1 1 0 001-1v-3h2v3a1 1 0 001 1h4a1 1 0 001-1V8.586l-6.293-6.293z" />
+                              </svg>
+                              <input
+                                type="text"
+                                value={accountDraft.address}
+                                onChange={(e) => setAccountDraft({...accountDraft, address: e.target.value})}
+                                className="w-full text-black pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                                placeholder="Address"
+                              />
+                            </div>
+                          </div>
+                          <div className="pl-0.5">
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Zip code</label>
+                            <div className="relative">
+                              <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M7 4h10v2H7V4zm0 5h10v2H7V9zm0 5h10v2H7v-2zM3 4h2v2H3V4zm0 5h2v2H3V9zm0 5h2v2H3v-2z" />
+                              </svg>
+                              <input
+                                type="text"
+                                value={accountDraft.zip}
+                                onChange={(e) => setAccountDraft({...accountDraft, zip: e.target.value})}
+                                className="w-full text-black pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                                placeholder="Zip code"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Billing Info */}
+                    <div className="space-y-3">
+                      <h3 className="text-lg font-semibold text-gray-900">Billing info</h3>
+                      {!isAccountEditing ? (
+                        <div className="space-y-3">
+                          <div className="pl-0.5">
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Card number</label>
+                            <div className="relative">
+                              <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M2 5a2 2 0 012-2h12a2 2 0 012 2v3H2V5zm0 5h16v5a2 2 0 01-2 2H4a2 2 0 01-2-2v-5z" />
+                              </svg>
+                              <div className="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-gray-900">{accountData.cardNumber}</div>
+                            </div>
+                          </div>
+                          <div className="pl-0.5">
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Account Title</label>
+                            <div className="relative">
+                              <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+                              </svg>
+                              <div className="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-gray-900">{accountData.accountTitle}</div>
+                            </div>
+                          </div>
+                          <div className="pl-0.5">
+                            <label className="block text-sm font-medium text-gray-700 mb-1">CVV</label>
+                            <div className="relative">
+                              <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+                              </svg>
+                              <div className="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-gray-900">{accountData.cvv}</div>
+                            </div>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="space-y-3">
+                          <div className="pl-0.5">
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Card number</label>
+                            <div className="relative">
+                              <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M2 5a2 2 0 012-2h12a2 2 0 012 2v3H2V5zm0 5h16v5a2 2 0 01-2 2H4a2 2 0 01-2-2v-5z" />
+                              </svg>
+                              <input
+                                type="text"
+                                value={accountDraft.cardNumber}
+                                onChange={(e) => setAccountDraft({...accountDraft, cardNumber: e.target.value})}
+                                className="w-full text-black pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                                placeholder="Card number"
+                              />
+                            </div>
+                          </div>
+                          <div className="pl-0.5">
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Account Title</label>
+                            <div className="relative">
+                              <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+                              </svg>
+                              <input
+                                type="text"
+                                value={accountDraft.accountTitle}
+                                onChange={(e) => setAccountDraft({...accountDraft, accountTitle: e.target.value})}
+                                className="w-full text-black pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                                placeholder="Account Title"
+                              />
+                            </div>
+                          </div>
+                          <div className="pl-0.5">
+                            <label className="block text-sm font-medium text-gray-700 mb-1">CVV</label>
+                            <div className="relative">
+                              <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+                              </svg>
+                              <input
+                                type="password"
+                                value={accountDraft.cvv}
+                                onChange={(e) => setAccountDraft({...accountDraft, cvv: e.target.value})}
+                                className="w-full text-black pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                                placeholder="CVV"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Password fields only while editing */}
+                    {isAccountEditing && (
+                      <div className="space-y-3">
+                        <h3 className="text-lg font-semibold text-gray-900">Security</h3>
+                        <div className="pl-0.5">
+                          <label className="block text-sm font-medium text-gray-700 mb-1">Current password</label>
+                          <div className="relative">
+                            <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
+                              <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+                            </svg>
+                            <input
+                              type="password"
+                              value={currentPassword}
+                              onChange={(e) => setCurrentPassword(e.target.value)}
+                              className="w-full text-black pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                              placeholder="Current password"
+                            />
+                          </div>
+                        </div>
+                        <div className="pl-0.5">
+                          <label className="block text-sm font-medium text-gray-700 mb-1">New password</label>
+                          <div className="relative">
+                            <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
+                              <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+                            </svg>
+                            <input
+                              type="password"
+                              value={newPassword}
+                              onChange={(e) => setNewPassword(e.target.value)}
+                              className="w-full text-black pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                              placeholder="New password"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Actions */}
+                  <div className="flex w-full items-center gap-3 pt-3 mt-4 border-t sticky bottom-0 bg-white">
+                    <button
+                      className="w-full flex-1 px-4 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50"
+                      onClick={() => {
+                        if (isAccountEditing) {
+                          setAccountData(accountDraft);
+                          setIsAccountEditing(false);
+                          setCurrentPassword('');
+                          setNewPassword('');
+                        } else {
+                          setIsAccountEditing(true);
+                          setAccountDraft(accountData);
+                        }
+                      }}
+                    >
+                      {isAccountEditing ? 'Save' : 'Edit'}
+                    </button>
+                    <button
+                      className="w-full flex-1 px-4 py-2 rounded-md bg-teal-600 text-white hover:bg-teal-700"
+                      onClick={() => {
+                        if (isAccountEditing) {
+                          setIsAccountEditing(false);
+                          setAccountDraft(accountData);
+                          setCurrentPassword('');
+                          setNewPassword('');
+                        } else {
+                          handleAccountClose();
+                        }
+                      }}
+                    >
+                      {isAccountEditing ? 'Cancel' : 'Close'}
+                    </button>
+                  </div>
+                </div>
+              )}
+
               {/* Signup Modal */}
               {activeModal === 'signup' && (
                 <div className="space-y-6">
@@ -555,8 +886,8 @@ const Header = () => {
                         <div className="relative">
                           <input 
                             type="text" 
-                            placeholder="Enter your First Name" 
-                            className="w-full pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent pl-10"
+                            placeholder="First Name" 
+                            className="w-full text-black pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent pl-10"
                           />
                           <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
@@ -568,8 +899,8 @@ const Header = () => {
                         <div className="relative">
                           <input 
                             type="text" 
-                            placeholder="Enter your Last Name" 
-                            className="w-full pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent pl-10"
+                            placeholder="Last Name" 
+                            className="w-full text-black pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent pl-10"
                           />
                           <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
@@ -583,8 +914,8 @@ const Header = () => {
                       <div className="relative">
                         <input 
                           type="email" 
-                          placeholder="Enter your Email Address" 
-                          className="w-full pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent pl-10"
+                          placeholder="Email Address" 
+                          className="w-full text-black pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent pl-10"
                         />
                         <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
                           <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
@@ -598,8 +929,8 @@ const Header = () => {
                       <div className="relative">
                         <input 
                           type="tel" 
-                          placeholder="Enter" 
-                          className="w-full pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent pl-10"
+                          placeholder="Phone Number" 
+                          className="w-full text-black pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent pl-10"
                         />
                         <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
                           <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
@@ -614,7 +945,7 @@ const Header = () => {
                           <input 
                             type="password" 
                             placeholder="Password" 
-                            className="w-full pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent pl-10"
+                            className="w-full text-black pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent pl-10"
                           />
                           <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
@@ -627,7 +958,7 @@ const Header = () => {
                           <input 
                             type="password" 
                             placeholder="Password" 
-                            className="w-full pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent pl-10"
+                            className="w-full text-black pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent pl-10"
                           />
                           <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />

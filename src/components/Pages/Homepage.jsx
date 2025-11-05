@@ -1857,14 +1857,6 @@ const Homepage = () => {
            </div>
         </div>
 
-        {/* Floating Spin button */}
-        {/* <button
-          onClick={() => setShowSpinModal(true)}
-          className="fixed bottom-6 right-6 z-90 bg-teal-600 hover:bg-teal-700 text-white rounded-full px-5 py-3 shadow-lg"
-        >
-          Spin & Win
-        </button> */}
-
         {/* Spin Wheel Modal */}
         {showSpinModal && (
           <div className="fixed inset-0 z-100 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
@@ -1881,7 +1873,7 @@ const Homepage = () => {
                 </svg>
               </button>
               <div className="p-4 sm:p-6">
-                <SpinWheel />
+                <SpinWheel setShowSpinModal={setShowSpinModal} showSpinModal={showSpinModal} />
               </div>
             </div>
           </div>
